@@ -1,4 +1,6 @@
 TagParts::Application.routes.draw do
+  resources :tags
+
   resources :parts
 
   resources :sources
