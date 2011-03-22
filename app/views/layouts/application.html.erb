@@ -8,7 +8,24 @@
 </head>
 <body>
 
+<header>
+  <%= link_to "Tags", tags_path %>
+  <%= link_to "Parts", parts_path %>
+  <%= link_to "Sources", sources_path %>
+</header>
+
+<hr>
+
 <%= yield %>
+
+<hr>
+
+<!-- FIXME: put to routes -->
+<footer>
+  <%= link_to "Home", "home" %>
+  <%= link_to "Contact", "contact" %>
+  <%= link_to "About", "about" %>
+</footer>
 
 </body>
 </html>
