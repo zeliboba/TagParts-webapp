@@ -88,9 +88,14 @@ class PartsController < ApplicationController
         GC.start
 
         # very simple parse by split
-        (params[:upload][:file].read.split('<hr>')[1..-2]).each do |p|
+        content = params[:upload][:file].read.split('<hr>')
+        source = Source.new
+        source.info = content[0] + content[-1]
+        source.save
+        (content[1..-2]).each do |p|
           part = Part.new
           part.content = p
+          part.source = source
           part.save
         end
       end

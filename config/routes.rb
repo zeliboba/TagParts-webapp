@@ -14,7 +14,9 @@ TagParts::Application.routes.draw do
     end
   end
 
-  resources :sources
+  resources :sources do
+    resources :parts
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
