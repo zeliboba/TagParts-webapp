@@ -80,4 +80,21 @@ class PartsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def upload
+    if params[:upload]
+      if params[:upload][:file]
+        # Start garbage collection to prevent memory leaks with large files
+        GC.start
+
+        # very simple parse by split
+        (params[:upload][:file].read.split('<hr>')[1..-2]).each do |p|
+          part = Part.new
+          part.content = p
+          part.save
+        end
+      end
+    end
+  end
+
 end

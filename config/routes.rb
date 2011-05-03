@@ -7,7 +7,12 @@ TagParts::Application.routes.draw do
 
   resources :tags
 
-  resources :parts
+  resources :parts do
+    collection do
+        get 'upload'
+        post 'upload'
+    end
+  end
 
   resources :sources
 
