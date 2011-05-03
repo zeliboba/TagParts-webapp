@@ -2,12 +2,13 @@
 
 <p>
   <b>Content:</b>
-  <%= @part.content %>
+  <%= raw @part.content %>
 </p>
 
 <p>
   <b>Source:</b>
-  <%= @part.source_id %>
+  <!-- FIXME: this does not look good: access to the model from template directly -->
+  <%= raw @part.source.info %>
 </p>
 
 

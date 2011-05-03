@@ -1,4 +1,5 @@
 <h1>Listing parts</h1>
+<h2> total <%= @parts.count %> </h2>
 
 <table>
   <tr>
@@ -11,7 +12,7 @@
 
 <% @parts.each do |part| %>
   <tr>
-    <td><%= part.content %></td>
+    <td><%= raw part.content %></td>
     <td><%= part.source_id %></td>
     <td><%= link_to 'Show', part %></td>
     <td><%= link_to 'Edit', edit_part_path(part) %></td>
