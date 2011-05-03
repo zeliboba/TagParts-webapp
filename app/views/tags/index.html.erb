@@ -3,7 +3,6 @@
 <table>
   <tr>
     <th>Word</th>
-    <th>Part</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +11,6 @@
 <% @tags.each do |tag| %>
   <tr>
     <td><%= tag.word %></td>
-    <td><%= tag.part_id %></td>
     <td><%= link_to 'Show', tag %></td>
     <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
     <td><%= link_to 'Destroy', tag, :confirm => 'Are you sure?', :method => :delete %></td>
