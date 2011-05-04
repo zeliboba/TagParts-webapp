@@ -94,9 +94,15 @@ class PartsController < ApplicationController
         source.save
         # again simple split, hopefully the word is always on the 9th place
         word = content[0].split('"')[9]
-        tag = Tag.new
-        tag.word = word
-        tag.save
+        result = Tag.where('word = ?', word)
+        if result.empty?
+          tag = Tag.new
+          tag.word = word
+          tag.save
+        else
+          # first is just for a case, model validates uniqueness
+          tag = result.first
+        end
         (content[1..-2]).each do |p|
           part = Part.new
           part.content = p
