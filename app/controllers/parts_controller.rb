@@ -92,10 +92,16 @@ class PartsController < ApplicationController
         source = Source.new
         source.info = content[0] + content[-1]
         source.save
+        # again simple split, hopefully the word is always on the 9th place
+        word = content[0].split('"')[9]
+        tag = Tag.new
+        tag.word = word
+        tag.save
         (content[1..-2]).each do |p|
           part = Part.new
           part.content = p
           part.source = source
+          part.tags[0] = tag
           part.save
         end
       end
