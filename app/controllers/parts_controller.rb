@@ -87,18 +87,24 @@ class PartsController < ApplicationController
         # Start garbage collection to prevent memory leaks with large files
         GC.start
 
+        count = 0
+        filename = params[:upload][:file].original_filename
         # very simple parse by split
         content = params[:upload][:file].read.split('<hr>')
         source = Source.new
         source.info = content[0] + content[-1]
-        source.save
+        if source.save
+            flash[:notice] = "New source is created"
+        end
         # again simple split, hopefully the word is always on the 9th place
         word = content[0].split('"')[9]
         result = Tag.where('word = ?', word)
         if result.empty?
           tag = Tag.new
           tag.word = word
-          tag.save
+          if tag.save
+            flash[:notice] += ", new tag '#{word}' is created"
+          end
         else
           # first is just for a case, model validates uniqueness
           tag = result.first
@@ -108,8 +114,11 @@ class PartsController < ApplicationController
           part.content = p
           part.source = source
           part.tags[0] = tag
-          part.save
+          if part.save
+            count += 1
+          end
         end
+        flash[:notice] += ", #{count} parts were successfully uploaded from file '#{filename}'"
       end
     end
   end
