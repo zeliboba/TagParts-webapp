@@ -38,5 +38,8 @@ module TagParts
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Specifies the default character set for all renders. The default is "utf-8".
+    config.action_controller.default_charset = 'iso-8859-1'
   end
 end
