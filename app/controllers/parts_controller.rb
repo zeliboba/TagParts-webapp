@@ -1,3 +1,5 @@
+require 'hpricot'
+
 class PartsController < ApplicationController
   # GET /parts
   # GET /parts.xml
@@ -89,15 +91,15 @@ class PartsController < ApplicationController
 
         count = 0
         filename = params[:upload][:file].original_filename
-        # very simple parse by split
-        content = params[:upload][:file].read.split('<hr>')
+        # parse by hpricot, remove p tags since they cause of problems
+        content = Hpricot(params[:upload][:file].read.gsub(/<.?p>/, ''))
         source = Source.new
-        source.info = content[0] + content[-1]
+        # hopefully faster with predicates :first and :last
+        source.info = content.search('table:first').to_html + content.search('font[@size="+2"]:last').inner_html
         if source.save
             flash[:notice] = "New source is created"
         end
-        # again simple split, hopefully the word is always on the 9th place
-        word = content[0].split('"')[9]
+        word = content.search('//td')[3].inner_text.scan(/\w\w+/).first # two letters at least
         result = Tag.where('word = ?', word)
         if result.empty?
           tag = Tag.new
@@ -109,9 +111,9 @@ class PartsController < ApplicationController
           # first is just for a case, model validates uniqueness
           tag = result.first
         end
-        (content[1..-2]).each do |p|
+        content.search('//font[@size="+1"]').each do |p|
           part = Part.new
-          part.content = p
+          part.content = p.inner_html + p.next_sibling.next_sibling.to_html
           part.source = source
           part.tags[0] = tag
           if part.save
