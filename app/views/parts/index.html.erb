@@ -12,7 +12,7 @@
 
 <% @parts.each do |part| %>
   <tr>
-    <td><%= raw part.content %></td>
+    <td><%= raw part.headline %></td>
     <td><%= part.source_id %></td>
     <td><%= link_to 'Show', part %></td>
     <td><%= link_to 'Edit', edit_part_path(part) %></td>
