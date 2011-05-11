@@ -1,2 +1,20 @@
 <h1>About</h1>
-<p>The minimal tag length is two letters, please do not use shorter words to search the corpus.</p>
+
+<p>
+The minimal tag length is two letters, please do not use shorter words
+to search the corpus.  The search word becomes the first tag for all
+the parts from the uploaded source.  All the tags are unique, new tag
+is not created if the same word exists in the databese.  In the case
+of complicated search queries, the first word of the query is taken as
+the first tag.  Therefore it is reasonable to put a full form of the
+search term at the beginning of the query, although it is not required
+since the tag can be renamed. There is a possible pitfall: tags are
+not checked for similarity, therefore tag <i>reden</i> is allowed even
+if word <i>rede</i> is already in the database.
+</p>
+
+<h2>TODO</h2>
+
+<ul>
+  <li>a text field for notes in part model</li>
+</ul>
