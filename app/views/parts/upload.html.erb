@@ -1,7 +1,17 @@
-<h1>New parts from file</h1>
+<h1>Upload new source file and create parts</h1>
 
 <%= form_for :upload, :url => {:action => "upload" }, :html => {:multipart => true} do |f| %>
   <%= f.file_field :file %>
   <%= f.submit %>
 <% end %>
-<%= link_to 'Back', parts_path %>
+
+<% if @source %>
+<p>
+  <b>The last uploaded source:</b>
+  <div>
+    <%= raw @source.info %>
+  </div>
+</p>
+<% end %>
+
+<%= link_to 'Back', sources_path %>

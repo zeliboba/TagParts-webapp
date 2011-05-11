@@ -11,16 +11,22 @@
     </div>
   <% end %>
 
-  <%= f.association :tags %>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+  <div>
+    <%= raw @part.headline %>
   </div>
-  <div class="field">
-    <%= f.label :source_id %><br />
-    <%= f.text_field :source_id %>
+  <hr width="50%" align="left"> <!-- FIXME: attributse are deprecated -->
+
+  <div>
+    <!-- FIXME: put label on top with css, not like this -->
+    <%= f.label :tags %><br />
+    <%= f.association :tags, :label => false %>
   </div>
   <div class="actions">
     <%= f.submit %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
   </div>
 <% end %>

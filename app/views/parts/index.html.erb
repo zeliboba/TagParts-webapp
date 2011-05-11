@@ -1,27 +1,16 @@
 <h1>Listing parts</h1>
 <h2> total <%= @parts.count %> </h2>
 
-<table>
-  <tr>
-    <th>Content</th>
-    <th>Source</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @parts.each do |part| %>
-  <tr>
-    <td><%= raw part.headline %></td>
-    <td><%= part.source_id %></td>
-    <td><%= link_to 'Show', part %></td>
-    <td><%= link_to 'Edit', edit_part_path(part) %></td>
-    <td><%= link_to 'Destroy', part, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+  <hr width="50%" align="left"> <!-- FIXME: attributse are deprecated -->
+    <div>
+      <%= raw part.headline %>
+    </div>
+    <div>
+    <%= link_to 'Show', part %>
+    <%= link_to 'Edit', edit_part_path(part) %>
+    <%= link_to 'Destroy', part, :confirm => 'Are you sure?', :method => :delete %>
+    </div>
 <% end %>
-</table>
 
 <br />
-
-<%= link_to 'New Part', new_part_path %>
-<%= link_to 'Upload Parts', upload_parts_path %>

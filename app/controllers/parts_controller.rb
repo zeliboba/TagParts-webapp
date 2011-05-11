@@ -100,6 +100,7 @@ class PartsController < ApplicationController
         source.info = content.search('table:first').to_html + content.search('font[@size="+2"]:last').inner_html
         if source.save
             flash[:notice] = "New source is created"
+            @source = source
         end
         word = content.search('//td')[3].inner_text.scan(/\w\w+/).first # two letters at least
         result = Tag.where('word = ?', word)
