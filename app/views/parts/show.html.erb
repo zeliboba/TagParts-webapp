@@ -5,6 +5,13 @@
   </div>
 </p>
 
+<div>
+  Tags:
+  <% @part.tags.each do |tag| %>
+  <i><%= tag.word %></i>
+  <% end %>
+</div>
+
 <p>
   <b>Source:</b>
   <div>
