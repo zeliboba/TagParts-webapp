@@ -1,4 +1,5 @@
 require 'hpricot'
+require 'iconv'
 
 class PartsController < ApplicationController
   # GET /parts
@@ -92,7 +93,8 @@ class PartsController < ApplicationController
         count = 0
         filename = params[:upload][:file].original_filename
         # parse by hpricot, remove p tags since they cause of problems
-        content = Hpricot(params[:upload][:file].read.gsub(/<.?p>/, ''))
+        content = Hpricot(Iconv.conv('utf-8', 'iso-8859-1',
+                          params[:upload][:file].read.gsub(/<.?p>/, '')))
         source = Source.new
         # hopefully faster with predicates :first and :last
         source.info = content.search('table:first').to_html + content.search('font[@size="+2"]:last').inner_html
