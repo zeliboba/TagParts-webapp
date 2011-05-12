@@ -11,6 +11,9 @@
       <% part.tags.each do |tag| %>
       <i><%= tag.word %></i>
       <% end %>
+      <% if part.note %>
+      (with note)
+      <% end %>
     </div>
     <div>
     <%= link_to 'Show', part %>
