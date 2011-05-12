@@ -1,4 +1,4 @@
-require 'hpricot'
+require 'nokogiri'
 
 class Part < ActiveRecord::Base
   belongs_to :source
@@ -6,7 +6,7 @@ class Part < ActiveRecord::Base
 
   def headline
     ncontext = 2
-    doc = Hpricot(content).at('table')
+    doc = Nokogiri::HTML(content).at('table')
     # this might help to reduce the width of the table
     #doc.set_attribute('width', '75%')
     # get tr and td of the line with the word
@@ -15,10 +15,10 @@ class Part < ActiveRecord::Base
     td = trtd[1].to_i
     # remove row except the line and context
     doc.search("tr:gt(#{tr + ncontext})").remove
-    doc.search("tr:lt(#{tr - ncontext})").remove
+    doc.search("//tr[position() < (#{tr - ncontext})]").remove
     # remove some columns
-    doc.search("td:eq(3)").remove
-    doc.search("td:lt(2)").remove
+    doc.search("td:eq(4)").remove
+    doc.search("//td[position() < 3]").remove
     return "#{doc.to_html}"
   end
 
