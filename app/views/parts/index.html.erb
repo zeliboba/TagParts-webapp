@@ -11,7 +11,7 @@
       <% part.tags.each do |tag| %>
       <i><%= tag.word %></i>
       <% end %>
-      <% if part.note %>
+      <% if ! part.note.blank? %>
       (with note)
       <% end %>
     </div>
