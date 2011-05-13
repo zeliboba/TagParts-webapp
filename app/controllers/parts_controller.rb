@@ -92,9 +92,9 @@ class PartsController < ApplicationController
 
         count = 0
         filename = params[:upload][:file].original_filename
-        # parse by nokogiri, remove p tags since they cause of problems
+        # parse by nokogiri, remove p tags since they cause of problems, force encoding
         content = Nokogiri::HTML(Iconv.conv('utf-8', 'iso-8859-1',
-                          params[:upload][:file].read.gsub(/<.?p>/, '')))
+                          params[:upload][:file].read.gsub(/<.?p>/, '')), nil, 'utf-8')
         source = Source.new
         # hopefully faster with predicates :first and :last
         source.info = content.search('table:first').to_html + content.search('font[@size="+2"]:last').inner_html
