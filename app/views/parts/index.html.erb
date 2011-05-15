@@ -2,15 +2,13 @@
 <h2> total <%= @parts.count %> </h2>
 
 <% @parts.each do |part| %>
-  <hr width="50%" align="left"> <!-- FIXME: attributse are deprecated -->
+  <hr style="width:50%; margin-left:0;">
     <div>
       <%= raw part.headline %>
     </div>
     <div>
       Tags:
-      <% part.tags.each do |tag| %>
-      <i><%= tag.word %></i>
-      <% end %>
+      <i><%= part.tags.map {|t| t.word}.join(", ") %></i>
       <% if ! part.note.blank? %>
       (with note)
       <% end %>

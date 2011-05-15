@@ -1,15 +1,13 @@
-<p>
+<div>
   <b>Content:</b>
   <div>
   <%= raw @part.content %>
   </div>
-</p>
+</div>
 
 <div>
-  Tags:
-  <% @part.tags.each do |tag| %>
-  <i><%= tag.word %></i>
-  <% end %>
+  <b>Tags:</b>
+  <i><%= @part.tags.map {|t| t.word}.join(", ") %></i>
 </div>
 
 </div>
@@ -19,13 +17,13 @@
   <% end %>
 </div>
 
-<p>
+<div>
   <b>Source:</b>
   <div>
   <!-- FIXME: this does not look good: access to the model from template directly -->
   <%= raw @part.source.info %>
   </div>
-</p>
+</div>
 
 
 <%= link_to 'Edit', edit_part_path(@part) %> |
