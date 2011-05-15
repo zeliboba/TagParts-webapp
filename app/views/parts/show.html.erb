@@ -7,9 +7,7 @@
 
 <div>
   Tags:
-  <% @part.tags.each do |tag| %>
-  <i><%= tag.word %></i>
-  <% end %>
+  <i><%= @part.tags.map {|t| t.word}.join(", ") %></i>
 </div>
 
 </div>
