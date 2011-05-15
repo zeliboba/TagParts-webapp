@@ -2,7 +2,7 @@
 <h2> total <%= @parts.count %> </h2>
 
 <% @parts.each do |part| %>
-  <hr width="50%" align="left"> <!-- FIXME: attributse are deprecated -->
+  <hr style="width:50%; margin-left:0;">
     <div>
       <%= raw part.headline %>
     </div>

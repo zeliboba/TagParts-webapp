@@ -6,12 +6,12 @@
 <% end %>
 
 <% if @source %>
-<p>
+<div>
   <b>The last uploaded source:</b>
   <div>
     <%= raw @source.info %>
   </div>
-</p>
+</div>
 <% end %>
 
 <%= link_to 'Back', sources_path %>
