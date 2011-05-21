@@ -5,7 +5,7 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.xml
   def index
-    @parts = Part.all
+    @parts = Part.order("created_at").page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
