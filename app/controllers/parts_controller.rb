@@ -5,7 +5,9 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.xml
   def index
-    @parts = Part.order("created_at").page(params[:page])
+    @parts = Part
+    @parts = @parts.where(:source_id => params[:source_id]) if params[:source_id]
+    @parts = @parts.order("created_at").page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
