@@ -2,7 +2,10 @@ TagParts::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
 
-  resources :tags
+  resources :tags do
+    resources :parts
+  end
+
 
   resources :parts do
     collection do
