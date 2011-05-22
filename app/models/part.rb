@@ -10,7 +10,7 @@ class Part < ActiveRecord::Base
     # this might help to reduce the width of the table
     #doc.set_attribute('width', '75%')
     # get tr and td of the line with the word
-    trtd = doc.at('//font[@color="#0000ff"]').css_path.gsub(/\D/,' ').split()
+    trtd = doc.at('//font[@color="#0000ff" or @color="#0000FF"]').css_path.gsub(/\D/,' ').split()
     tr = trtd[0].to_i
     td = trtd[1].to_i
     # remove row except the line and context
