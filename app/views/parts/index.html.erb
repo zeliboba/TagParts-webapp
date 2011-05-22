@@ -1,5 +1,7 @@
 <h1>Listing parts</h1>
-<h2> total <%= @parts.count %> </h2>
+<h2> total <%= @parts.total_count %> </h2>
+
+<%= paginate @parts %>
 
 <% @parts.each do |part| %>
   <hr style="width:50%; margin-left:0;">
@@ -19,5 +21,7 @@
     <%= link_to 'Destroy', part, :confirm => 'Are you sure?', :method => :delete %>
     </div>
 <% end %>
+
+<%= paginate @parts %>
 
 <br />
