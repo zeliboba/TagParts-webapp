@@ -17,7 +17,11 @@ alphabetically, it should be easy to track such kind of similarity.
 <p>
 When a source is destroyed, all the parts from that source are deleted
 as well.  On the other hand, the tags are kept even when all the
-related parts and sources are destroyed.
+related parts and sources are destroyed.  If tag is destroyed it is
+also removed from all the parts, parts are allowed not to have any
+tags.  For removal all the tags from the part, make sure that none are
+selected in the list during part editing (CTRL-click can be used to
+select or deselect an item).
 </p>
 
 <p>
