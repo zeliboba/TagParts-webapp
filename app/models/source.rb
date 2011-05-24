@@ -2,6 +2,7 @@ require 'nokogiri'
 
 class Source < ActiveRecord::Base
   has_many :parts, :dependent => :destroy
+  validates_presence_of :info
 
   def headline
     doc = Nokogiri::HTML(info)
