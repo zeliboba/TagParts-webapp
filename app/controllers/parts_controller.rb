@@ -10,6 +10,9 @@ class PartsController < ApplicationController
     @parts = @parts.joins(:tags).where("tags.id" => params[:tag_id]) if params[:tag_id]
     @parts = @parts.order("created_at").page(params[:page])
 
+    @tag_ids = []
+    @tag_ids = params[:tag_id].map {|p| p.to_i} if params[:tag_id]
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @parts }
