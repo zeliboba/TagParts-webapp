@@ -7,8 +7,11 @@ class PartsController < ApplicationController
   def index
     @parts = Part
     @parts = @parts.where(:source_id => params[:source_id]) if params[:source_id]
-    @parts = @parts.joins(:tags).where("tags.id" => params[:tag_id]) if params[:tag_id]
+    @parts = @parts.joins(:tags).where("tags.id" => params[:tag_id]).group("parts.id").having("count(*) = #{params[:tag_id].size}") if params[:tag_id]
     @parts = @parts.order("created_at").page(params[:page])
+
+    @tag_ids = []
+    @tag_ids = params[:tag_id].map {|p| p.to_i} if params[:tag_id]
 
     respond_to do |format|
       format.html # index.html.erb
