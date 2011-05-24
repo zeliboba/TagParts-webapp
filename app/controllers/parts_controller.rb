@@ -62,6 +62,7 @@ class PartsController < ApplicationController
   # PUT /parts/1
   # PUT /parts/1.xml
   def update
+    params[:part][:tag_ids] ||= [] # use empty list if empty, from railcast 17
     @part = Part.find(params[:id])
 
     respond_to do |format|
