@@ -26,7 +26,16 @@ select or deselect an item).
 
 <p>
 A note can be attached to the parts, for example it can explain why
-tags were assigned to the part.
+tags were assigned to the part.  When a part is created, the note
+field has value <em>nil</em>, this not the same as empty string.  If
+the part is saved after edition, <em>nil</em> become a string.
+</p>
+
+<p>
+The parts listing is sorted by the time they were updated, the most
+recent update goes to the end of the list.  This way all the
+non-edited parts are on top.  Setting or removing tags does not update
+the part on its own, only changes in note or content field matters.
 </p>
 
 <h2>TODO</h2>
