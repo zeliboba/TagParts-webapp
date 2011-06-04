@@ -13,16 +13,7 @@
 
 <% @parts.each do |part| %>
   <hr style="width:50%; margin-left:0;">
-    <div>
-      <%= raw part.headline %>
-    </div>
-    <div>
-      Tags:
-      <i><%= part.tags.map {|t| t.word}.join(", ") %></i>
-      <% if ! part.note.blank? %>
-      (with note)
-      <% end %>
-    </div>
+  <%= render part %>
     <div>
     <%= link_to 'Show', part %>
     <%= link_to 'Edit', edit_part_path(part) %>

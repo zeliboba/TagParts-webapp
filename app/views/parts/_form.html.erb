@@ -14,12 +14,12 @@
   <div>
     <%= raw @part.headline %>
   </div>
-  <hr width="50%" align="left"> <!-- FIXME: attributse are deprecated -->
+  <hr style="width:50%; margin-left:0;">
 
   <div>
     <!-- FIXME: put label on top with css, not like this -->
     <%= f.label :tags %><br />
-    <%= f.association :tags, :label => false %>
+    <%= f.association :tags, :label => false, :as => :check_boxes %>
   </div>
 
   <div class="field">
