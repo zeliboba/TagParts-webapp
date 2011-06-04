@@ -1,0 +1,11 @@
+<div>
+  <%= raw part.headline %>
+</div>
+
+<div>
+  Tags:
+  <i><%= part.tags.map {|t| t.word}.join(", ") %></i>
+  <% if ! part.note.blank? %>
+  (with note)
+  <% end %>
+</div>
