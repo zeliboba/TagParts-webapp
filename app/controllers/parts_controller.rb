@@ -5,13 +5,13 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.xml
   def index
+    @checked = params[:tag_id] ? params[:tag_id] : session[:checked]
+    session[:checked] = @checked
+
     @parts = Part
     @parts = @parts.where(:source_id => params[:source_id]) if params[:source_id]
-    @parts = @parts.joins(:tags).where("tags.id" => params[:tag_id]).group("parts.id").having("count(*) = #{params[:tag_id].size}") if params[:tag_id]
+    @parts = @parts.joins(:tags).where("tags.id" => @checked).group("parts.id").having("count(*) = #{@checked.size}") if @checked
     @parts = @parts.order("updated_at").page(params[:page])
-
-    @tag_ids = []
-    @tag_ids = params[:tag_id].map {|p| p.to_i} if params[:tag_id]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -70,7 +70,7 @@ class PartsController < ApplicationController
 
     respond_to do |format|
       if @part.update_attributes(params[:part])
-        format.html { redirect_to(@part, :notice => 'Part was successfully updated.') }
+        format.html { redirect_to( :action => "index", :notice => 'Part was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
