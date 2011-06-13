@@ -5,12 +5,12 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.xml
   def index
-    @checked = params[:tag_id] ? params[:tag_id] : session[:checked]
+    @checked = (params[:tag_id] || params[:commit]) ? (params[:tag_id] ||= []) : session[:checked]
     session[:checked] = @checked
 
     @parts = Part
     @parts = @parts.where(:source_id => params[:source_id]) if params[:source_id]
-    @parts = @parts.joins(:tags).where("tags.id" => @checked).group("parts.id").having("count(*) = #{@checked.size}") if @checked
+    @parts = @parts.joins(:tags).where("tags.id" => @checked).group("parts.id").having("count(*) = #{@checked.size}") if ! @checked.blank?
     @parts = @parts.order("updated_at").page(params[:page])
 
     respond_to do |format|
