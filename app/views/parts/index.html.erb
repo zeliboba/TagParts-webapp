@@ -3,7 +3,7 @@
 
 <%= form_tag(search_path) do %>
   <% for tag in Tag.all %>
-     <%= check_box_tag "tag_id[]", tag.id, @tag_ids.include?(tag.id)%>
+     <%= check_box_tag "tag_id[]", tag.id, @checked.include?(tag.id.to_s)%>
      <%= tag.word %>
   <% end %>
   <%= submit_tag("Select") %>
