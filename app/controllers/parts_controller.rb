@@ -5,7 +5,7 @@ class PartsController < ApplicationController
   # GET /parts
   # GET /parts.xml
   def index
-    @checked = (params[:tag_id] || params[:commit]) ? (params[:tag_id] ||= []) : session[:checked]
+    @checked = (params[:tag_id] || params[:commit]) ? (params[:tag_id] ||= []) : (session[:checked] ||= [])
     session[:checked] = @checked
 
     @parts = Part
