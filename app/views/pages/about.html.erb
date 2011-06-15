@@ -19,9 +19,8 @@ When a source is destroyed, all the parts from that source are deleted
 as well.  On the other hand, the tags are kept even when all the
 related parts and sources are destroyed.  If tag is destroyed it is
 also removed from all the parts, parts are allowed not to have any
-tags.  For removal all the tags from the part, make sure that none are
-selected in the list during part editing (CTRL-click can be used to
-select or deselect an item).
+tags.  For removal all the tags from the part, make sure that no
+checkboxes are selected during part editing.
 </p>
 
 <p>
@@ -38,8 +37,17 @@ non-edited parts are on top.  Setting or removing tags does not update
 the part on its own, only changes in note or content field matters.
 </p>
 
+<p>
+Parts with a set of tags can be selected using checkboxes at the parts
+listing.  The tag set is kept persistent until explicitly changed with
+"Select" button or by choosing a tag from the tags listing.
+</p>
+
 <h2>TODO</h2>
 
 <ul>
   <li><s>a text field for notes in part model</s></li>
+  <li>categories for tags</li>
+  <li>saving tag sets for re-use in the future</li>
+  <li>different experiments, possibly by assigning a tag during source upload</li>
 </ul>
