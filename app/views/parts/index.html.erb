@@ -1,12 +1,14 @@
 <h1>Listing parts</h1>
 <h2> total <%= @parts.total_count %> </h2>
 
+<% if Tag.all.any? %>
 <%= form_tag(search_path) do %>
   <% for tag in Tag.all %>
      <%= check_box_tag "tag_id[]", tag.id, @checked.include?(tag.id.to_s)%>
      <%= tag.word %>
   <% end %>
   <%= submit_tag("Select") %>
+<% end %>
 <% end %>
 
 <%= paginate @parts %>
