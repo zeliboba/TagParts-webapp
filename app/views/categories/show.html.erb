@@ -5,6 +5,12 @@
   <%= @category.name %>
 </p>
 
+<div>
+  <b>Tags:</b>
+  <% for tag in @category.tags %>
+  <p> <%= tag.word %> </p>
+  <% end %>
+</div>
 
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>

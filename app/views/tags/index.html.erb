@@ -4,6 +4,7 @@
 <table>
   <tr>
     <th>Word</th>
+    <th>Category</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,6 +13,7 @@
 <% @tags.each do |tag| %>
   <tr>
     <td><%= render tag %></td>
+    <td><%= tag.category.name if ! tag.category.blank? %></td>
     <td><%= link_to 'Show', tag %></td>
     <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
     <td><%= link_to 'Destroy', tag, :confirm => 'Are you sure?', :method => :delete %></td>
@@ -22,3 +24,4 @@
 <br />
 
 <%= link_to 'New Tag', new_tag_path %>
+<%= link_to 'Categories', categories_path %>
