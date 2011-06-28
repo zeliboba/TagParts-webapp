@@ -3,6 +3,8 @@ TagParts::Application.routes.draw do
   match '/about',   :to => 'pages#about'
   match '/search',  :to => 'parts#index'
 
+  resources :categories
+
   resources :tags do
     resources :parts
   end

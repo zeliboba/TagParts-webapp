@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+Category.find_or_create_by_name("verb")
+Category.find_or_create_by_name("usage")
+Category.find_or_create_by_name("context")
