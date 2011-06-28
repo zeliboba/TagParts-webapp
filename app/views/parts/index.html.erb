@@ -3,10 +3,25 @@
 
 <% if Tag.all.any? %>
 <%= form_tag(search_path) do %>
-  <% for tag in Tag.all %>
+  <% for category in Category.order("id") %>
+  <!-- display tags with category -->
+  <div style="float: left;">
+  <% for tag in Tag.where(:category_id => category.id) %>
      <%= check_box_tag "tag_id[]", tag.id, @checked.include?(tag.id.to_s)%>
      <%= tag.word %>
+     <br />
   <% end %>
+  </div>
+  <% end %>
+  <!-- repeat for tags without category -->
+  <div style="float: left;">
+  <% for tag in Tag.where(:category_id => nil) %>
+     <%= check_box_tag "tag_id[]", tag.id, @checked.include?(tag.id.to_s)%>
+     <%= tag.word %>
+     <br />
+  <% end %>
+  </div>
+  <br style="clear: both;" />
   <%= submit_tag("Select") %>
 <% end %>
 <% end %>

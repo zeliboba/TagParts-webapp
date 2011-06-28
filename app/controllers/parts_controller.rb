@@ -114,6 +114,7 @@ class PartsController < ApplicationController
         if result.empty?
           tag = Tag.new
           tag.word = word
+          tag.category = Category.first
           if tag.save
             flash[:notice] += ", new tag '#{word}' is created"
           end
