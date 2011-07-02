@@ -4,6 +4,8 @@ class Part < ActiveRecord::Base
   belongs_to :source
   has_and_belongs_to_many :tags
   validates_presence_of :content
+  
+  before_create :set_updated_at 
 
   def headline
     ncontext = 2
@@ -21,6 +23,10 @@ class Part < ActiveRecord::Base
     doc.search("td:eq(4)").remove
     doc.search("//td[position() < 3]").remove
     return "#{doc.to_html}"
+  end
+
+  def set_updated_at
+    self.updated_at = DateTime::new
   end
 
 end
