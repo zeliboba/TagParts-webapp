@@ -8,3 +8,4 @@ call git pull
 
 call bundle install
 call rake db:migrate
+call rake reset:updated_at
